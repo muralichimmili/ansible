@@ -7,7 +7,7 @@
   ansible.builtin.user:
     name: roboshop
 
-- name: download zip file related to catelogue
+- name: download zip file related to catalogue
   include_role:
     name: common
     tasks_from: download
