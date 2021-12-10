@@ -22,9 +22,9 @@
     src: /tmp/catalogue-main/
     dest: /home/roboshop/catalouge
     remote_src: yes
-    become_user: roboshop
+  become_user: roboshop
 
 - name: install npm
   community.general.npm:
     path: /home/roboshop/catalouge
-    become_user: roboshop
+  become_user: roboshop
