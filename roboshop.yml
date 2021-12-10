@@ -1,5 +1,13 @@
 - name: setup frontend
   hosts: frontend
   become: true
+  tags: frontend
   roles:
     - frontend
+
+- name: setup mangoDB
+  hosts: mongodb
+  become: true
+  tags: mongodb
+  roles:
+    - mongodb
