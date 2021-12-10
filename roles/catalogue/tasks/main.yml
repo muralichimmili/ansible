@@ -1,0 +1,30 @@
+- name: install nodejs
+  ansible.builtin.yum:
+    name: ["nodejs","make","gcc-c++"]
+    state: present
+
+- name: Add user
+  ansible.builtin.user:
+    name: roboshop
+
+- name: download zip file related to catelogue
+  include_role:
+    name: common
+    tasks_from: download
+
+- name: removing old code
+  ansible.builtin.file:
+    path: /home/roboshop/catalouge
+    state: absent
+
+- name: copy application code
+  ansible.builtin.copy:
+    src: /tmp/catalogue-main/
+    dest: /home/roboshop/catalouge
+    remote_src: yes
+    become_user: roboshop
+
+- name: install npm
+  community.general.npm:
+    path: /home/roboshop/catalouge
+    become_user: roboshop
