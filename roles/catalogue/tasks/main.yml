@@ -14,17 +14,29 @@
 
 - name: removing old code
   ansible.builtin.file:
-    path: /home/roboshop/catalouge
+    path: /home/roboshop/catalogue
     state: absent
 
 - name: copy application code
   ansible.builtin.copy:
     src: /tmp/catalogue-main/
-    dest: /home/roboshop/catalouge
+    dest: /home/roboshop/catalogue
     remote_src: yes
   become_user: roboshop
 
 - name: install npm
   community.general.npm:
-    path: /home/roboshop/catalouge
+    path: /home/roboshop/catalogue
   become_user: roboshop
+
+- name: update systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: start service
+  ansible.builtin.systemd:
+    name: catalogue
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
