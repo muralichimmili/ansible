@@ -1,5 +1,5 @@
--name: roboshop playbook
- hosts: frontend
- become: true
- role:
-   - frontend
+- name: setup frontend
+  hosts: frontend
+  become: true
+  roles:
+    - frontend
