@@ -18,3 +18,11 @@
   tags: catalogue
   roles:
     - catalogue
+
+
+- name: setup redis
+  hosts: redis
+  become: true
+  tags: redis
+  roles:
+    - redis
