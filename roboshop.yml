@@ -27,14 +27,14 @@
   roles:
     - redis
 
-name: setup user
+- name: setup user
   hosts: user
   become: true
   tags: user
   roles:
     - user
 
-name: setup cart
+- name: setup cart
   hosts: cart
   become: true
   tags: cart
