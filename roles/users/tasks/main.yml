@@ -1,4 +1,4 @@
-- name: setup catalogue by inporting nodejs
+- name: setup users by inporting nodejs
   include_role:
     name: common
     tasks_from: nodejs
