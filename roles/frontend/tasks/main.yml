@@ -1,0 +1,20 @@
+- name: install Nginx
+  ansible.builtin.yum:
+    name: nginx
+    state: latest
+
+- name: Make sure Nginx service is running
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+
+- name: download zip file related to frontend
+  include_role:
+    name: common
+    tasks_from: download
+
+- name: Recursively remove the old content files fron nginx
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
