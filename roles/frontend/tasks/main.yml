@@ -3,12 +3,6 @@
     name: nginx
     state: latest
 
-- name: Make sure Nginx service is running
-  ansible.builtin.systemd:
-    name: nginx
-    state: restarted
-    enabled: yes
-
 - name: download zip file related to frontend
   include_role:
     name: common
@@ -24,3 +18,16 @@
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
     remote_src: yes
+
+- name: Copy roboshop configuration file to nginx
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Make sure Nginx service is running
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+
+
