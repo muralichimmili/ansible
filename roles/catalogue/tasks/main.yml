@@ -1,6 +1,6 @@
 - name: install nodejs
   ansible.builtin.yum:
-    name: ["nodejs","make","gcc-c++"]
+    name: [ "nodejs", "make", "gcc-c++" ]
     state: present
 
 - name: Add user
@@ -30,7 +30,7 @@
   become_user: roboshop
 
 - name: update systemd file
-  ansible.builtin.template:
+  ansible.builtin.file:
     src: systemd.service
     dest: /etc/systemd/system/catalogue.service
 
