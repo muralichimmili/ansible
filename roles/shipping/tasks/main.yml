@@ -29,7 +29,7 @@
     cmd: mvn clean package && target/shipping-1.0.jar shipping.jar
     chdir: /home/roboshop/{{component}}
   become_user: roboshop
-  ingnoring_errors: yes
+  ignoring_errors: yes
 
 - name: update systemd file
   ansible.builtin.template:
