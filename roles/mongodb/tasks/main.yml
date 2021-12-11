@@ -14,11 +14,6 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: restart mongodb
-  ansible.builtin.systemd:
-    name: mongod
-    state: restarted
-    enabled: yes
 
 - name: download zip file related to mongodb
   include_role:
@@ -32,4 +27,10 @@
   loop:
     - catalogue
     - users
+
+- name: restart mongodb
+  ansible.builtin.systemd:
+    name: mongod
+    state: restarted
+    enabled: yes
 
