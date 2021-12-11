@@ -1,0 +1,44 @@
+- name: setup mysql repo files
+  ansibile.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: remove maria db package
+  ansible.builtin.yum:
+    name: mariadb-libs
+    state: absent
+
+- name: Install mysql
+  ansible.builtin.yum:
+    name: mysql-community-server
+    state: present
+
+- name: restart mysql
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: grab default password
+  ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
+  register: DEFAULT_PASSWORD
+
+- name: check new password is working
+  ansible.builtin.shell: echo 'show databases;' | mysql -uroot -p"{{NEW_PASSWORD}}"
+  register: CHECK_NEW_PASSWORD
+  ignore_erros: yes
+
+- name: print
+  ansible.builtin.debug:
+    msg: "{{CHECK_NEW_PASSWORD}}"
+
+- name: copy sql files
+  ansible.builtin.copy:
+    src: pass.sql
+    dest: /tmp/pass.sql
+  when: CHECK_NEW_PASSWORD.failed
+
+- name: reset password mysql
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD.stdout}}" </tmp/pass.sql
+  when: CHECK_NEW_PASSWORD.failed
+
