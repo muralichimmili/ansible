@@ -12,9 +12,21 @@
     name: common
     tasks_from: download
 
+name: removing old code
+  ansible.builtin.file:
+    path: /home/roboshop/{{component}}
+    state: absent
+
+- name: copy application code
+  ansible.builtin.copy:
+    src: /tmp/{{component}}-main/
+    dest: /home/roboshop/{{component}}
+    remote_src: true
+  become_user: roboshop
+
 - name: make maven package
   ansible.builtin.shell:
-    chdir: /home/roboshop/shipping
+    chdir: /home/roboshop/{{component}}
     cmd: mvn clean package && target/shipping-1.0.jar shipping.jar
 
 
