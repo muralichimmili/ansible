@@ -8,5 +8,9 @@
     name: roboshop
 
 - name: download code
-  include_rule: common
-  tasks_from: download
+  include_rule:
+    name: common
+    tasks_from: download
+
+#- name: make maven package
+#  ansible.builtin.shell: mvn clean package && target/shipping-1.0.jar shipping.jar
