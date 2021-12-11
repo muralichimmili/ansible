@@ -26,7 +26,7 @@
 - name: check new password is working
   ansible.builtin.shell: echo 'show databases;' | mysql -uroot -p"{{NEW_PASSWORD}}"
   register: CHECK_NEW_PASSWORD
-  ignore_erros: yes
+  ignore_errors: yes
 
 - name: print
   ansible.builtin.debug:
