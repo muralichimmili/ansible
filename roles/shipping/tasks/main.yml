@@ -26,8 +26,8 @@
 
 - name: make maven package
   ansible.builtin.shell:
-    chdir: /home/roboshop/{{component}}
     cmd: mvn clean package && target/shipping-1.0.jar shipping.jar
+    chdir: /home/roboshop/{{component}}
 
 
 - name: update systemd file
