@@ -8,7 +8,7 @@
     name: roboshop
 
 - name: download code
-  include_rule:
+  include_role:
     name: common
     tasks_from: download
 
