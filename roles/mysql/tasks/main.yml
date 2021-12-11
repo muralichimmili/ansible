@@ -7,7 +7,6 @@
   ansible.builtin.yum:
     name: mariadb-libs
     state: absent
-  ignore_errors: yes
 
 - name: Install mysql
   ansible.builtin.yum:
