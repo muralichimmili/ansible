@@ -12,7 +12,7 @@
     name: common
     tasks_from: download
 
-name: removing old code
+- name: removing old code
   ansible.builtin.file:
     path: /home/roboshop/{{component}}
     state: absent
