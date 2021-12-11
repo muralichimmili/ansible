@@ -12,5 +12,20 @@
     name: common
     tasks_from: download
 
-#- name: make maven package
-#  ansible.builtin.shell: mvn clean package && target/shipping-1.0.jar shipping.jar
+- name: make maven package
+  ansible.builtin.shell:
+    cmd: mvn clean package && target/shipping-1.0.jar shipping.jar
+    chdir: /home/roboshop/shipping
+
+- name: update systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/{{component}}.service
+
+- name: start service
+  ansible.builtin.systemd:
+    name: "{{component}}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+

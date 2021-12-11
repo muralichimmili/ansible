@@ -1,0 +1,9 @@
+[Service]
+User=roboshop
+Environment=CART_ENDPOINT=ec2-107-22-85-153.compute-1.amazonaws.com:8080
+Environment=DB_HOST=ec2-54-89-252-217.compute-1.amazonaws.com
+ExecStart=/bin/java -jar /home/roboshop/shipping/shipping.jar
+SyslogIdentifier=shipping
+
+[Install]
+WantedBy=multi-user.target
