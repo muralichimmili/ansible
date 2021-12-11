@@ -2,8 +2,8 @@
 Description = Cart Service
 [Service]
 User=roboshop
-Environment=REDIS_HOST=ec2-34-238-232-47.compute-1.amazonaws.com
-Environment=CATALOGUE_HOST=ec2-18-212-167-82.compute-1.amazonaws.com
+Environment=REDIS_HOST=ec2-3-82-152-157.compute-1.amazonaws.com
+Environment=CATALOGUE_HOST=ec2-52-90-190-85.compute-1.amazonaws.com
 ExecStart=/bin/node /home/roboshop/cart/server.js
 SyslogIdentifier=cart
 

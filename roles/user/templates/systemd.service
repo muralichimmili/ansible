@@ -2,8 +2,8 @@
 Description = User Service
 [Service]
 User=roboshop
-Environment=REDIS_HOST=ec2-34-238-232-47.compute-1.amazonaws.com
-Environment=MONGO_URL="mongodb://ec2-52-206-208-91.compute-1.amazonaws.com:27017/users"
+Environment=REDIS_HOST=ec2-3-82-152-157.compute-1.amazonaws.com
+Environment=MONGO_URL="mongodb://ec2-54-89-252-217.compute-1.amazonaws.com:27017/users"
 ExecStart=/bin/node /home/roboshop/user/server.js
 SyslogIdentifier=user
 
