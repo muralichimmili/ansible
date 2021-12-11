@@ -1,5 +1,5 @@
 - name: setup mysql repo files
-  ansibile.builtin.template:
+  ansibile.builtin.copy:
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
@@ -33,7 +33,7 @@
     msg: "{{CHECK_NEW_PASSWORD}}"
 
 - name: copy sql files
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: pass.sql
     dest: /tmp/pass.sql
   when: CHECK_NEW_PASSWORD.failed
