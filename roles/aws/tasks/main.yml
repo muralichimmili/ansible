@@ -1,48 +1,39 @@
-#
-#- name: install python
-#  ansible.builtin.yum:
-#    name:
-#      - python36
-#      - gcc
-#      - python3-devel
-#    state: present
-#
-#- name: Unarchive a aws zip file
-#  ansible.builtin.unarchive:
-#    src: https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
-#    dest: /tmp
-#    remote_src: yes
-#
-#- name: install aws
-#  ansible.builtin.shell:
-#    cmd: ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-#    chdir: /tmp
-#
-#- name: run shell command to get aws version
-#  ansible.builtin.shell:
-#    cmd: aws --version
-#  register: AWS_VERSION
-#
-#- name: print version aws installed
-#  ansible.builtin.debug:
-#    msg: "{{AWS_VERSION}}"
+- name: Create an ec2 instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    keypair: allowall
+    instance_type: t2.micro
+    security_group: allowall
+    image: ami-0855cab4944392d0a
+    region: us-east-1
+  tasks:
+    - name: Launch instance
+      amazon.aws.ec2:
+        key_name: "{{ keypair }}"
+        group: "{{ security_group }}"
+        instance_type: "{{ instance_type }}"
+        image: "{{ image }}"
+        tags: {{item}}
+        wait: true
+        region: "{{ region }}"
+        vpc_subnet_id: subnet-29e63245
+        assign_public_ip: yes
+        loop:
+          - instance1
+          - instance2
+          - instance3
+      register: ec2
 
-- name: replace access id and key
-  ansible.builtin.lineinfile:
-    path: ~/.aws/credentials
-    regexp: '^aws_access_key_id'
-    line: aws_access_key_id = {{aws_access_key_id}}
-
-- name: replace access id and key
-  ansible.builtin.lineinfile:
-    path: ~/.aws/credentials
-    regexp: '^aws_secret_access_key'
-    line: aws_secret_access_key = {{aws_secret_access_key}}
-
-- name: replace access id and key
-  ansible.builtin.lineinfile:
-    path: ~/.aws/config
-    regexp: '^region'
-    line: region = {{region}}
-
-
+#    - name: Add new instance to host group
+#      add_host:
+#        hostname: "{{ item. }}"
+#        groupname: launched
+#      loop: "{{ ec2.instances }}"
+#
+#    - name: Wait for SSH to come up
+#      delegate_to: "{{ item.public_dns_name }}"
+#      wait_for_connection:
+#        delay: 60
+#        timeout: 320
+#      loop: "{{ ec2.instances }}"
