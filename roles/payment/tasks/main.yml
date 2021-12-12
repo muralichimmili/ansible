@@ -17,10 +17,21 @@
     name: common
     tasks_from: download
 
+- name: removing old code
+  ansible.builtin.file:
+    path: /home/roboshop/{{component}}
+    state: absent
+
+- name: copy application code
+  ansible.builtin.copy:
+    src: /tmp/{{component}}-main/
+    dest: /home/roboshop/{{component}}
+    remote_src: true
+  become_user: roboshop
 
 
 - name: move the code
-  ansible.builtin.shell: mv /home/roboshop/payment-main /home/roboshop/payment
+  ansible.builtin.shell: mv /home/roboshop/payment-main payment
 
 
 - name: Install specified python requirements
