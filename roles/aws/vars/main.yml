@@ -5,3 +5,8 @@ image: ami-0855cab4944392d0a
 region: us-east-1
 access_key: AKIAUGSY5HTQZVM4RO62
 secret_key: 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
+
+
+  $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  unzip awscliv2.zip
+  sudo ./aws/install

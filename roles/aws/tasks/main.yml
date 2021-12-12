@@ -1,4 +1,4 @@
-- name: install pip
+- name:  pip install
   pip:
     name: boto
     state: present
