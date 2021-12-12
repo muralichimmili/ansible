@@ -1,13 +1,25 @@
 - name: install python
   ansible.builtin.yum:
-    name: python
+    name:
+      - python36
+      - gcc
+      - python3-devel
     state: present
 
 - name: add user
   ansible.builtin.user:
     user: roboshop
+  become_user: roboshop
 
 - name: download code
-  include_role:
+  ansible.builtin.include_role:
     name: common
     tasks_from: download
+
+- name: move the code
+  - ansible.builtin.shell: mv /home/roboshop/payment-main /home/roboshop/payment
+  become_user: roboshop
+
+- name: Install specified python requirements
+  pip:
+    requirements: /home/roboshop/{{component}}/requirements.txt
