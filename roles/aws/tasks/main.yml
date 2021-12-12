@@ -10,7 +10,7 @@
     region: "{{ region }}"
     vpc_subnet_id: subnet-0f8f406a59289aeb4
     assign_public_ip: yes
-    register: ec2
+  register: ec2
 
 #    - name: Add new instance to host group
 #      add_host:
