@@ -11,7 +11,7 @@
     user: roboshop
 
 - name: download code
-  ansible.builtin.include_role:
+  include_role:
     name: common
     tasks_from: download
   become_user: roboshop
