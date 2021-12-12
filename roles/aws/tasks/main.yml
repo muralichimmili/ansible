@@ -1,33 +1,17 @@
-- name: Create an ec2 instance
+- name: Launch instance
   amazon.aws.ec2:
-  hosts: localhost
-  gather_facts: False
-  vars:
-    keypair: allowall
-    instance_type: t2.micro
-    security_group: allowall
-    image: ami-0855cab4944392d0a
-    region: us-east-1
-    access_key: AKIAUGSY5HTQZVM4RO62
-    secret_key: 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
-  tasks:
-    - name: Launch instance
-      amazon.aws.ec2:
-        aws_access_key: "{{access_key}}"
-        aws_secret_key: "{{secret_key}}"
-        key_name: "{{ keypair }}"
-        group: "{{ security_group }}"
-        instance_type: "{{ instance_type }}"
-        image: "{{ image }}"
-        tags: "{{item}}"
-        wait: true
-        region: "{{ region }}"
-        vpc_subnet_id: subnet-0f8f406a59289aeb4
-        assign_public_ip: yes
-        loop:
-          - instance1
-          - instance2
-          - instance3
+    aws_access_key: "{{access_key}}"
+    aws_secret_key: "{{secret_key}}"
+    key_name: "{{ keypair }}"
+    group: "{{ security_group }}"
+    instance_type: "{{ instance_type }}"
+    image: "{{ image }}"
+    tags: test
+    wait: true
+    region: "{{ region }}"
+    vpc_subnet_id: subnet-0f8f406a59289aeb4
+    assign_public_ip: yes
+    loop:
       register: ec2
 
 #    - name: Add new instance to host group
