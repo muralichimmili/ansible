@@ -1,7 +1,7 @@
-name: Upgrade all packages
-  yum:
+- name: Upgrade all packages
+  ansible.builtin.yum:
     name: '*'
-    state: present
+    state: latest
 
 - name: install aws cli
   ansible.builtin.yum:
