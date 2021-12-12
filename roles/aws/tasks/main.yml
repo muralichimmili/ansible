@@ -1,7 +1,3 @@
-- name: Upgrade all packages
-  ansible.builtin.yum:
-    name: '*'
-    state: latest
 
 - name: install python
   ansible.builtin.yum:
@@ -9,7 +5,10 @@
       - python36
       - gcc
       - python3-devel
-    state: latest
+    state: present
+
+- name: run shell command to get aws version
+  ansible.builtin.shell: alias python=python3.6
 
 - name: Unarchive a aws zip file
   ansible.builtin.unarchive:
