@@ -5,8 +5,7 @@
 
 - name: install aws cli
   ansible.builtin.yum:
-    name:
-      - python
+    name: python
     present: present
 
 - name: Unarchive a aws zip file
