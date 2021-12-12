@@ -10,11 +10,15 @@
   ansible.builtin.user:
     user: roboshop
 
+- name: roboshop user
+  become_user: roboshop
+
 - name: download code
-  include_role:
+  ansible.builtin.include_role:
     name: common
     tasks_from: download
-  become_user: roboshop
+
+
 
 - name: move the code
   ansible.builtin.shell: mv /home/roboshop/payment-main /home/roboshop/payment
