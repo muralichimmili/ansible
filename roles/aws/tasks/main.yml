@@ -5,7 +5,6 @@
       - python36
       - gcc
       - python3-devel
-      - python34-pip.noarch
     state: present
 
 - name: Unarchive a aws zip file
