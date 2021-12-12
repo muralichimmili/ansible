@@ -9,7 +9,7 @@
 - name: add user
   ansible.builtin.user:
     user: roboshop
-
+  register: userinfo
 
 
 - name: download code
@@ -33,3 +33,29 @@
 - name: Install specified python requirements
   pip:
     requirements: /home/roboshop/{{component}}/requirements.txt
+    executable: pip3
+
+- name: change usrr id
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{component}}/{{component}}.ini
+    regexp: '^uid'
+    line: { {userinfo.id}}
+
+- name: change user id
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{component}}/{{component}}.ini
+    regexp: '^uid'
+    line: uid = {{userinfo.id}}
+
+- name: change user group
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{component}}/{{component}}.ini
+    regexp: '^gid'
+    line: gid = {{userinfo.group}}
+
+- name: start payment service
+  ansible.builtin.systemd:
+    name: payment
+    state: started
+    enabled: yes
+    daemon_reload: yes
