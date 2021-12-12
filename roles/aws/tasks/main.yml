@@ -5,7 +5,9 @@
 
 - name: install aws cli
   ansible.builtin.yum:
-    name: awscli
+    name:
+      - python
+      - awscli
     present: present
 
 - name: run shell command to get aws version
