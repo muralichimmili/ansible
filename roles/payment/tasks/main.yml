@@ -39,7 +39,7 @@
   ansible.builtin.lineinfile:
     path: /home/roboshop/{{component}}/{{component}}.ini
     regexp: '^uid'
-    line: uid = {{USER_INFO.id}}
+    line: uid = {{USER_INFO.uid}}
 
 - name: change user group
   ansible.builtin.lineinfile:
