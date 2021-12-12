@@ -61,3 +61,10 @@
   tags: rabbitmq
   roles:
     - rabbitmq
+
+- name: setup payment
+  hosts: payment
+  become: true
+  tags: payment
+  roles:
+    - payment
