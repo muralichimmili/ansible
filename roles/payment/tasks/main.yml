@@ -1,0 +1,13 @@
+- name: install python
+  ansible.builtin.yum:
+    name: python
+    state: present
+
+- name: add user
+  ansible.builtin.user:
+    user: roboshop
+
+- name: download code
+  include_role:
+    name: common
+    tasks_from: download
