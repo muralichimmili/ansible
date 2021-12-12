@@ -12,8 +12,8 @@
   register: userinfo
 
 - name: print
-  - ansible.builtin.debug:
-      msg: "{{userinfo}}"
+  ansible.builtin.debug:
+    msg: "{{userinfo}}"
 
 
 - name: download code
