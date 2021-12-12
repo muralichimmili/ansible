@@ -17,7 +17,7 @@
     tasks_from: download
 
 - name: move the code
-  - ansible.builtin.shell: mv /home/roboshop/payment-main /home/roboshop/payment
+  ansible.builtin.shell: mv /home/roboshop/payment-main /home/roboshop/payment
   become_user: roboshop
 
 - name: Install specified python requirements
