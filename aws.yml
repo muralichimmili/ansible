@@ -1,0 +1,5 @@
+- name: install and configure aws
+  hosts: aws
+  become: true
+  roles:
+    - aws
