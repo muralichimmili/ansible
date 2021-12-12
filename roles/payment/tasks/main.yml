@@ -8,7 +8,7 @@
 
 - name: add user
   ansible.builtin.user:
-    user: roboshop
+    name: roboshop
   register: userinfo
 
 - name: print
