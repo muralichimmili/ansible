@@ -3,10 +3,13 @@
     name: '*'
     state: latest
 
-- name: install aws cli
+- name: install python
   ansible.builtin.yum:
-    name: python
-    present: present
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: present
 
 - name: Unarchive a aws zip file
   ansible.builtin.unarchive:
