@@ -9,16 +9,16 @@
 - name: add user
   ansible.builtin.user:
     user: roboshop
-  become_user: roboshop
 
 - name: download code
   ansible.builtin.include_role:
     name: common
     tasks_from: download
+  become_user: roboshop
 
 - name: move the code
   ansible.builtin.shell: mv /home/roboshop/payment-main /home/roboshop/payment
-  become_user: roboshop
+
 
 - name: Install specified python requirements
   pip:
