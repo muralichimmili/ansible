@@ -54,3 +54,10 @@
   tags: shipping
   roles:
     - shipping
+
+- name: setup rabittmq
+  hosts: rabittmq
+  become: true
+  tags: rabittmq
+  roles:
+    - rabittmq
