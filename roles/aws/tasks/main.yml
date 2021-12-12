@@ -7,17 +7,21 @@
     security_group: allowall
     image: ami-0855cab4944392d0a
     region: us-east-1
+    access_key: AKIAUGSY5HTQZVM4RO62
+    secret_key: 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
   tasks:
     - name: Launch instance
       amazon.aws.ec2:
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
         key_name: "{{ keypair }}"
         group: "{{ security_group }}"
         instance_type: "{{ instance_type }}"
         image: "{{ image }}"
-        tags: {{item}}
+        tags: "{{item}}"
         wait: true
         region: "{{ region }}"
-        vpc_subnet_id: subnet-29e63245
+        vpc_subnet_id: subnet-0f8f406a59289aeb4
         assign_public_ip: yes
         loop:
           - instance1
