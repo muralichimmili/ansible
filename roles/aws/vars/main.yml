@@ -1,6 +1,6 @@
 keypair: allowall
 instance_type: t2.micro
-security_group: allowall
+security_group: allow-all
 image: ami-0855cab4944392d0a
 region: us-east-1
 access_key: AKIAUGSY5HTQZVM4RO62
