@@ -11,6 +11,10 @@
     user: roboshop
   register: userinfo
 
+- name: print
+  - ansible.builtin.debug:
+      msg: {{userinfo}}
+
 
 - name: download code
   ansible.builtin.include_role:
@@ -53,9 +57,14 @@
     regexp: '^gid'
     line: gid = {{userinfo.group}}
 
+- name: update systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/{{component}}.service
+
 - name: start payment service
   ansible.builtin.systemd:
-    name: payment
+    name: {{component}}
     state: started
     enabled: yes
     daemon_reload: yes
