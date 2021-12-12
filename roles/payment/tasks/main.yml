@@ -13,7 +13,7 @@
 
 - name: print
   - ansible.builtin.debug:
-      msg: {{userinfo}}
+      msg: "{{userinfo}}"
 
 
 - name: download code
