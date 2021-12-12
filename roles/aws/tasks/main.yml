@@ -6,7 +6,6 @@
     group: "{{ security_group }}"
     instance_type: "{{ instance_type }}"
     image: "{{ image }}"
-    tags: test
     wait: true
     region: "{{ region }}"
     vpc_subnet_id: subnet-0f8f406a59289aeb4
