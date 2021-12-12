@@ -10,8 +10,7 @@
   ansible.builtin.user:
     user: roboshop
 
-- name: roboshop user
-  become_user: roboshop
+
 
 - name: download code
   ansible.builtin.include_role:
