@@ -1,3 +1,7 @@
+- name pip for aws:
+  pip:
+    name: boto
+
 - name: Launch instance
   amazon.aws.ec2:
     aws_access_key: "{{access_key}}"
