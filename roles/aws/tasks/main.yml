@@ -9,7 +9,7 @@
       - python36
       - gcc
       - python3-devel
-    state: present
+    state: latest
 
 - name: Unarchive a aws zip file
   ansible.builtin.unarchive:
