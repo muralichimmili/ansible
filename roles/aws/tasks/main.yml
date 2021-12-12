@@ -1,7 +1,7 @@
 - name: install pip
   pip:
-    - name: boto
-      state: present
+    name: boto
+    state: present
 
 - name: Launch instance
   amazon.aws.ec2:
