@@ -1,29 +1,29 @@
 [frontend]
-172.31.82.122
+frontend-dev.myhostedzone
 
 [mongodb]
-172.31.93.48
+mongodb-dev.myhostedzone
 
 [catalogue]
-172.31.81.80
+catalogue-dev.myhostedzone
 
 [redis]
-172.31.92.170
+redis-dev.myhostedzone
 
 [user]
-172.31.93.153
+user-dev.myhostedzone
 
 [cart]
-172.31.93.19
+cart-dev.myhostedzone
 
 [mysql]
-172.31.81.199
+mysql-dev.myhostedzone
 
 [shipping]
-172.31.88.91
+shipping-dev.myhostedzone
 
 [rabbitmq]
-172.31.95.157
+rabbitmq-dev.myhostedzone
 
 [payment]
-172.31.88.71
+payment-dev.myhostedzone

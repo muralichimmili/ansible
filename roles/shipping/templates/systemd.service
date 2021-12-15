@@ -1,7 +1,7 @@
 [Service]
 User=roboshop
-Environment=CART_ENDPOINT=172.31.93.19:8080
-Environment=DB_HOST=172.31.81.199
+Environment=CART_ENDPOINT=cart-{{ENV}}.myhostedzone:8080
+Environment=DB_HOST=mysql-{{ENV}}.myhostedzone
 ExecStart=/bin/java -jar /home/roboshop/shipping/shipping.jar
 SyslogIdentifier=shipping
 
