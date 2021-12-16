@@ -13,6 +13,7 @@
     name:
     - mysql-community-server
     - MySQL-python
+    - python36-PyMySQL
     state: present
 
 - name: restart mysql
