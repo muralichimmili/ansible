@@ -27,7 +27,7 @@
 - name: Make sure Nginx service is running
   ansible.builtin.systemd:
     name: nginx
-    state: restarted
+    state: started
     enabled: yes
 
 
